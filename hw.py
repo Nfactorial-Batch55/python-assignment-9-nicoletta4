@@ -1,3 +1,5 @@
+from collections import Counter
+
 """
 Exercise-1: Find missing elements
 Write a function "missing_elements(my_list: list) -> list" that takes a
@@ -8,20 +10,23 @@ missing_elements([1, 2, 4, 6, 7]) -> [3, 5]
 """
 
 def missing_elements(my_list: list) -> list:
-    pass
+    if not my_list:
+        return []
+    else:
+        return (sorted(set(range(my_list[0], my_list[-1] + 1)).difference(my_list)))
 
-"""
-Exercise-2: Count occurrences
-Write a function "count_occurrences(my_list: list) -> dict" that takes a
-list of integers and returns a dictionary where keys are unique integers
-from the list and values are their counts in the list.
 
-Example:
-count_occurrences([1, 2, 3, 1, 2, 4, 5, 4]) -> {1: 2, 2: 2, 3: 1, 4: 2, 5: 1}
-"""
+# Exercise-2: Count occurrences
+# Write a function "count_occurrences(my_list: list) -> dict" that takes a
+# list of integers and returns a dictionary where keys are unique integers
+# from the list and values are their counts in the list.
+#
+# Example:
+# count_occurrences([1, 2, 3, 1, 2, 4, 5, 4]) -> {1: 2, 2: 2, 3: 1, 4: 2, 5: 1}
+
 
 def count_occurrences(my_list: list) -> dict:
-    pass
+    return Counter(my_list)
 
 
 """
@@ -32,9 +37,8 @@ lists of integers and returns a list of unique common elements.
 Example:
 common_elements([1, 2, 3, 4, 5], [3, 4, 5, 6, 7]) -> [3, 4, 5]
 """
-
 def common_elements(list1: list, list2: list) -> list:
-    pass
+    return [i for i in list1 if i in list2]
 
 """
 Exercise-5: Character frequency
@@ -46,7 +50,7 @@ char_frequency('hello world') -> {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1
 """
 
 def char_frequency(my_string: str) -> dict:
-    pass
+    return Counter(my_string)
 
 """
 Exercise-6: Unique words
@@ -58,7 +62,8 @@ unique_words('hello world hello') -> 2
 """
 
 def unique_words(my_string: str) -> int:
-    pass
+    return len(set(my_string.split()))
+
 
 """
 Exercise-7: Word frequency
@@ -70,7 +75,7 @@ word_frequency('hello world hello') -> {'hello': 2, 'world': 1}
 """
 
 def word_frequency(my_string: str) -> dict:
-    pass
+    return dict(Counter(my_string.split()))
 
 """
 Exercise-8: Count elements in range
@@ -83,7 +88,8 @@ count_in_range([1, 2, 3, 4, 5, 4, 3, 2, 1], 2, 4) -> 3
 """
 
 def count_in_range(my_list: list, start: int, end: int) -> int:
-    pass
+    return len(set(list(i for i in my_list if start <= i <= end)))
+
 
 """
 Exercise-9: Swap dictionary keys and values
@@ -96,7 +102,8 @@ swap_dict({1: 'a', 2: 'b', 3: 'c'}) -> {'a': 1, 'b': 2, 'c': 3}
 """
 
 def swap_dict(d: dict) -> dict:
-    pass
+    return {value: key for key, value in d.items()}
+
 
 """
 Exercise-10: Subset check
@@ -108,7 +115,7 @@ is_subset({1, 2, 3, 4, 5}, {3, 4, 5}) -> True
 """
 
 def is_subset(set1: set, set2: set) -> bool:
-    pass
+    return set2.issubset(set1)
 
 """
 Exercise-11: Intersection of lists
@@ -120,7 +127,7 @@ list_intersection([1, 2, 3, 4, 5], [3, 4, 5, 6, 7]) -> [3, 4, 5]
 """
 
 def list_intersection(list1: list, list2: list) -> list:
-    pass
+    return list(set(list1) & set(list2))
 
 """
 Exercise-12: Union of lists
@@ -132,7 +139,7 @@ list_union([1, 2, 3, 4, 5], [3, 4, 5, 6, 7]) -> [1, 2, 3, 4, 5, 6, 7]
 """
 
 def list_union(list1: list, list2: list) -> list:
-    pass
+    return list(set().union(list1, list2))
 
 """
 Exercise-13: Most frequent element
@@ -144,7 +151,7 @@ most_frequent([1, 2, 3, 1, 2, 4, 5, 4, 1]) -> 1
 """
 
 def most_frequent(my_list: list) -> int:
-    pass
+    return max(sorted(set(my_list)), key=my_list.count)
 
 """
 Exercise-14: Least frequent element
@@ -156,5 +163,4 @@ least_frequent([1, 2, 3, 1, 2, 4, 5, 4, 1]) -> 3
 """
 
 def least_frequent(my_list: list) -> int:
-    pass
-
+    return min(sorted(set(my_list)), key=my_list.count)
